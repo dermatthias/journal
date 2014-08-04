@@ -10,15 +10,20 @@
     <h1>Today is </h1>
     <div>
         <div class="hidden">
-            <form action="{url_for('insert')}" method="POST">
-                <textarea name="entry">
-
-                </textarea>
+            <form action="{{ url_for('insert') }}" method="POST">
+                <textarea name="text"></textarea>
                 <br>
                 <input type="submit" value="Add entry">
             </form>
         </div>
     </div>
+
+    {% for entry in entries %}
+        <div class="entry">
+            <h2>{{ entry.date }}</h2>
+            <div class="text">{{ entry.text }}</div>
+        </div>
+    {% endfor %}
 
     <h1>Yesterday</h1>
 </div>
