@@ -6,6 +6,8 @@ class Entry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.DateTime, default=datetime.datetime.now)
     text = db.Column(db.Text)
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
 
     def __init__(self, text):
         self.text = text

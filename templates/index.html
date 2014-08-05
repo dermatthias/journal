@@ -23,7 +23,7 @@
             </div>
 
             <div class="location-area center-text">
-                <h2>Where was I today?</h2>
+                <h2>Where were I today?</h2>
                 <div id="map">
                 </div>
             </div>
@@ -37,6 +37,8 @@
                 <input type="submit" value="Add entry" class="button wide-button center ">
             </div>
 
+            <input type="hidden" name="lat" value="" id="form-lat">
+            <input type="hidden" name="lng" value="" id="form-lng">
         </form>
     </div>
 
@@ -45,7 +47,11 @@
             <h2>{{ entry.date.strftime('%A, %d. %B %Y') }}</h2>
             <div class="text">
                 {{ entry.text_markdown|safe }}
+                <div class="location center-text">
+                    I was here today: {{ entry.lat }}, {{ entry.lng }}
+                </div>
             </div>
+
         </div>
     {% endfor %}
 </div>

@@ -3,15 +3,13 @@ from flask import Flask
 from flask import request, redirect, url_for, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 import markdown2
-import models
-
 
 app = Flask(__name__)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///journal.db'
 db = SQLAlchemy(app)
 
-
+import models
 
 @app.route('/')
 def index():
@@ -29,6 +27,8 @@ def index():
 def insert():
     text = request.form['text']
     entry = models.Entry(text)
+    entry.lat = request.form['lat']
+    entry.lng = request.form['lng']
     db.session.add(entry)
     db.session.commit()
     return redirect(url_for('index'))
