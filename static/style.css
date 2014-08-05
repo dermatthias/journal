@@ -4,6 +4,7 @@
   deeper: #008c9e;
   dressed: #00b4cc;
   aqua: #00dffc;
+  red:#e74c3c
 
 */
 
@@ -13,6 +14,9 @@ body {
 
 .center {
     margin: 0 auto;
+}
+.center-text {
+    text-align: center;
 }
 
 .hidden {
@@ -37,6 +41,33 @@ textarea {
     border: #00dffc 1px solid;
 }
 
+.button {
+    height: 50px;
+    padding: 5px 25px 5px 25px;
+    color: #fff;
+    background-color: #e74c3c;
+    border: none;
+    font-size: 1.3em;
+}
+.button:hover {
+    cursor:pointer;
+    background-color: #
+}
+
+.wide-button {
+    width: 200px;
+}
+
+.margin-top {
+    margin-top: 10%;
+}
+.margin-bottom {
+    margin-bottom: 10%;
+}
+
+/*************
+ * Main      *
+ *************/
 .main {
     width: 50%;
     margin: 0 auto;
@@ -66,10 +97,20 @@ textarea {
     height: 64px;
     margin: 1%;
 }
+.main .photo-upload-area span {
+    padding: 1%;
+    background-color: #008c9e;
+    color: #fff;
+
+}
 
 .main .submit-area {
     width: 100%;
     text-align: center;
+}
+
+.main .location-area #map{
+    height: 200px;
 }
 
 /*********
@@ -97,19 +138,4 @@ textarea {
 }
 .main .entry .text h3 {
     font-size: 1.1em;
-}
-
-
-
-.button {
-    height: 50px;
-    padding: 5px 25px 5px 25px;
-    color: #fff;
-    background-color: #e74c3c;
-    border: none;
-    font-size: 1.3em;
-}
-
-.wide-button {
-    width: 200px;
 }

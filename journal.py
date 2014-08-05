@@ -15,8 +15,8 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-
     entries = models.Entry.query.all()
+    # render markdown for all entries in DB
     for entry in entries:
         entry.text_markdown = markdown2.markdown(entry.text)
 
@@ -31,6 +31,12 @@ def insert():
     entry = models.Entry(text)
     db.session.add(entry)
     db.session.commit()
+    return redirect(url_for('index'))
+
+
+@app.route('/add_location', methods=['POST'])
+def add_location():
+    entry_id = request.form['entry_id']
     return redirect(url_for('index'))
 
 

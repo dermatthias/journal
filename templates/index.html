@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,200' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/js/leaflet-0.7.3/leaflet.css" />
     <link rel="stylesheet" href="/static/style.css" type="text/css" />
     <title>journal</title>
 </head>
@@ -14,21 +15,28 @@
         <h1>Today is {{ datetime.now().strftime('%A, %d. %B %Y') }}</h1>
     </div>
     <div class="new-area">
+        <h2 class="center-text">What happened today?</h2>
         <form action="{{ url_for('insert') }}" method="POST">
+
             <div class="text-area">
                 <textarea name="text"></textarea>
             </div>
-            <div class="photo-upload-area" id="photo-upload">
-                Drop photos here.
-                {#
-                <svg height="100" width="100">
-                    <circle cx="50" cy="50" r="40" stroke="transparent" stroke-width="3" fill="#00dffc" />
-                </svg>
-                #}
+
+            <div class="location-area center-text">
+                <h2>Where was I today?</h2>
+                <div id="map">
+                </div>
             </div>
-            <div class="submit-area">
+
+            <div class="photo-upload-area center-text">
+                <h2>Do pictures tell more than thousand words?</h2>
+                <span>Drop pictures here.</span>
+            </div>
+
+            <div class="submit-area margin-top">
                 <input type="submit" value="Add entry" class="button wide-button center ">
             </div>
+
         </form>
     </div>
 
@@ -41,6 +49,8 @@
         </div>
     {% endfor %}
 </div>
-
+<script src="/static/js/jquery-2.1.1.min.js" type="application/javascript"></script>
+<script src="/static/js/leaflet-0.7.3/leaflet.js" type="application/javascript"></script>
+<script src="/static/js/code.js" type="application/javascript"></script>
 </body>
 </html>
