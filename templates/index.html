@@ -2,35 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya:400italic,700italic,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,300,200' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/static/style.css" type="text/css" />
     <title>journal</title>
 </head>
 <body>
 
-<div>
-    <h1>Today is </h1>
-    <div>
-        <div class="hidden">
-            <form action="{{ url_for('insert') }}" method="POST">
+<div class="main">
+    <div class="headline">
+        <h1>Today is {{ datetime.now().strftime('%A, %d. %B %Y') }}</h1>
+    </div>
+    <div class="new-area">
+        <form action="{{ url_for('insert') }}" method="POST">
+            <div class="text-area">
                 <textarea name="text"></textarea>
-                <br>
-                <input type="submit" value="Add entry">
-            </form>
-        </div>
+            </div>
+            <div class="photo-upload-area" id="photo-upload">
+                Drop photos here.
+                {#
+                <svg height="100" width="100">
+                    <circle cx="50" cy="50" r="40" stroke="transparent" stroke-width="3" fill="#00dffc" />
+                </svg>
+                #}
+            </div>
+            <div class="submit-area">
+                <input type="submit" value="Add entry" class="button wide-button center ">
+            </div>
+        </form>
     </div>
 
     {% for entry in entries %}
         <div class="entry">
-            <h2>{{ entry.date }}</h2>
-            <div class="text">{{ entry.text }}</div>
+            <h2>{{ entry.date.strftime('%A, %d. %B %Y') }}</h2>
+            <div class="text">
+                {{ entry.text_markdown|safe }}
+            </div>
         </div>
     {% endfor %}
-
-    <h1>Yesterday</h1>
 </div>
 
-
-
-
 </body>
-
 </html>

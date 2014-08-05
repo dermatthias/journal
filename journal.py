@@ -1,7 +1,10 @@
+import datetime
 from flask import Flask
 from flask import request, redirect, url_for, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
+import markdown2
 import models
+
 
 app = Flask(__name__)
 app.debug = True
@@ -14,8 +17,11 @@ db = SQLAlchemy(app)
 def index():
 
     entries = models.Entry.query.all()
+    for entry in entries:
+        entry.text_markdown = markdown2.markdown(entry.text)
 
     return render_template('index.html',
+                           datetime=datetime.datetime,
                            entries=entries)
 
 
@@ -26,6 +32,7 @@ def insert():
     db.session.add(entry)
     db.session.commit()
     return redirect(url_for('index'))
+
 
 
 if __name__ == '__main__':

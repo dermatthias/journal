@@ -1,0 +1,115 @@
+/*
+  grey: #343838;
+  lio: #005f6b;
+  deeper: #008c9e;
+  dressed: #00b4cc;
+  aqua: #00dffc;
+
+*/
+
+body {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.hidden {
+    display: none;
+}
+.a {
+    color: #00b4cc;
+}
+.a:hover {
+    color: #00dffc;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 200;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+textarea {
+    border: #00dffc 1px solid;
+}
+
+.main {
+    width: 50%;
+    margin: 0 auto;
+    color: #343838;
+}
+
+.main .headline {
+    text-align: center;
+}
+
+/*************
+ * New Entry *
+ *************/
+.main .new-area {
+    margin-bottom: 10%;
+}
+
+.main .text-area textarea {
+    display:block;
+    width: 97%;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.main .photo-upload-area {
+    text-align: center;
+    height: 64px;
+    margin: 1%;
+}
+
+.main .submit-area {
+    width: 100%;
+    text-align: center;
+}
+
+/*********
+ * Entry *
+ *********/
+.main .entry h2{
+    text-align: center;
+    font-size: 2em;
+}
+
+.main .entry .text {
+    font-family: 'Alegreya', serif;
+    padding: 0 15%;
+    margin-bottom: 10%;
+}
+.main .entry .text h1 {
+    font-size: 1.8em;
+}
+.main .entry .text h2 {
+    font-size: 1.5em;
+    text-align: left;
+}
+.main .entry .text h3 {
+    font-size: 1.2em;
+}
+.main .entry .text h3 {
+    font-size: 1.1em;
+}
+
+
+
+.button {
+    height: 50px;
+    padding: 5px 25px 5px 25px;
+    color: #fff;
+    background-color: #e74c3c;
+    border: none;
+    font-size: 1.3em;
+}
+
+.wide-button {
+    width: 200px;
+}
