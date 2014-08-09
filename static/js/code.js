@@ -54,6 +54,20 @@ var Map = Map || {};
         $('#form-lng').val(e.latlng.lng);
     };
 
+    exports.showEntryMap = function(id) {
+        var entryMapDiv = $('#entry-map-'+id);
+        entryMapDiv.show();
+
+        var lat = entryMapDiv.data('lat');
+        var lng = entryMapDiv.data('lng');
+        var entryMap = L.map('entry-map-'+id).setView([lat, lng], 10);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 18
+        }).addTo(entryMap);
+        var marker = L.marker([lat, lng]).addTo(entryMap);
+    };
+
 }(window, jQuery, Map));
 
 

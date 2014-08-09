@@ -22,11 +22,16 @@ body {
 .hidden {
     display: none;
 }
-.a {
-    color: #00b4cc;
+a {
+    color: #4ECDC4;
+    text-decoration: none;
 }
-.a:hover {
-    color: #00dffc;
+a:hover {
+    color: #C44D58;
+    text-decoration: underline;
+}
+a:visited {
+    color: #4ECDC4;
 }
 
 h1, h2, h3, h4, h5 {
@@ -38,7 +43,7 @@ h1 {
 }
 
 textarea {
-    border: #00dffc 1px solid;
+    border: #556270 1px solid;
 }
 
 .controls .add, .controls .sub {
@@ -49,7 +54,7 @@ textarea {
     height: 50px;
     padding: 5px 25px 5px 25px;
     color: #fff;
-    background-color: #e74c3c;
+    background-color: #ff6b6b;
     border: none;
     font-size: 1.3em;
 }
@@ -86,7 +91,7 @@ textarea {
  * New Entry *
  *************/
 .main .new-area {
-    margin-bottom: 10%;
+    margin-bottom: 20%;
 }
 
 .main .text-area textarea {
@@ -95,8 +100,10 @@ textarea {
     height: 250px;
     margin: 0 auto;
 }
-.main .text-area textarea:hover {
-    outline: 1px solid #00dffc;
+.main .text-area textarea:hover,
+.main .text-area textarea:active,
+.main .text-area textarea:focus {
+    outline: 1px solid #556270;
 }
 
 .main .photo-upload-area {
@@ -153,4 +160,8 @@ textarea {
 .main .entry .location {
     margin-top: 20px;
     font-style: italic;
+}
+
+.main .entry .entry-map {
+    height: 300px;
 }

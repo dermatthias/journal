@@ -32,12 +32,12 @@
                 <div id="map">
                 </div>
             </div>
-
+            {#
             <div class="photo-upload-area center-text">
                 <h2>Do pictures tell more than thousand words?</h2>
                 <div class="drop-area">Drop pictures here.</div>
             </div>
-
+            #}
             <div class="submit-area margin-top">
                 <input type="submit" value="Add entry" class="button wide-button center ">
             </div>
@@ -48,14 +48,24 @@
         </form>
     </div>
 
+    <div class="headline">
+        <h1>Timeline</h1>
+    </div>
+
     {% for entry in entries %}
         <div class="entry">
             <h2>{{ entry.date.strftime('%A, %d. %B %Y') }}</h2>
             <div class="text">
                 {{ entry.text_markdown|safe }}
                 <div class="location center-text">
-                    I was here today: {{ entry.lat }}, {{ entry.lng }}
+                    I were here today: <a href="#" onClick="Map.showEntryMap({{ entry.id }});return false;">{{ entry.lat }}, {{ entry.lng }}</a>
+
+                    <div id="entry-map-{{ entry.id }}" class="hidden entry-map" data-lat="{{ entry.lat }}" data-lng="{{ entry.lng }}">
+
+                    </div>
+
                 </div>
+
             </div>
 
         </div>
