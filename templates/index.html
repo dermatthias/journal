@@ -12,10 +12,15 @@
 
 <div class="main">
     <div class="headline">
-        <h1>Today is {{ datetime.now().strftime('%A, %d. %B %Y') }}</h1>
+        <h1>Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span></h1>
     </div>
     <div class="new-area">
-        <h2 class="center-text">What happened today?</h2>
+        <h2 class="center-text">
+            <span>What happened today?</span>
+            <span class="controls">
+                <span class="add">+</span> <span class="sub">-</span>
+            </span>
+        </h2>
         <form action="{{ url_for('insert') }}" method="POST">
 
             <div class="text-area">
@@ -30,13 +35,14 @@
 
             <div class="photo-upload-area center-text">
                 <h2>Do pictures tell more than thousand words?</h2>
-                <span>Drop pictures here.</span>
+                <div class="drop-area">Drop pictures here.</div>
             </div>
 
             <div class="submit-area margin-top">
                 <input type="submit" value="Add entry" class="button wide-button center ">
             </div>
 
+            <input type="hidden" name="date" value="" id="form-date">
             <input type="hidden" name="lat" value="" id="form-lat">
             <input type="hidden" name="lng" value="" id="form-lng">
         </form>
@@ -57,6 +63,7 @@
 </div>
 <script src="/static/js/jquery-2.1.1.min.js" type="application/javascript"></script>
 <script src="/static/js/leaflet-0.7.3/leaflet.js" type="application/javascript"></script>
+<script src="/static/js/moment.min.js" type="application/javascript"></script>
 <script src="/static/js/code.js" type="application/javascript"></script>
 </body>
 </html>

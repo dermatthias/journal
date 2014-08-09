@@ -13,7 +13,7 @@ import models
 
 @app.route('/')
 def index():
-    entries = models.Entry.query.all()
+    entries = models.Entry.query.order_by(models.Entry.date.desc()).all()
     # render markdown for all entries in DB
     for entry in entries:
         entry.text_markdown = markdown2.markdown(entry.text)
@@ -29,6 +29,8 @@ def insert():
     entry = models.Entry(text)
     entry.lat = request.form['lat']
     entry.lng = request.form['lng']
+    if request.form['date']:
+        entry.date = datetime.datetime.strptime((request.form['date']), '%Y-%m-%d %H:%M:%S')
     db.session.add(entry)
     db.session.commit()
     return redirect(url_for('index'))

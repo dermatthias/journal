@@ -1,5 +1,28 @@
 // journal javascript
 
+
+var Controls = Controls || {};
+(function(window, $, exports){
+
+    exports.init = function() {
+
+        var title = $('#headline-date');
+        var dateFormField = $('#form-date');
+
+        $('.controls .add').on('click', function(){
+            title.html(DateTools.addDay());
+            dateFormField.val(DateTools.formatDateForAPI(DateTools.currentDate));
+        });
+
+        $('.controls .sub').on('click', function(){
+            title.html(DateTools.subDay());
+            dateFormField.val(DateTools.formatDateForAPI(DateTools.currentDate));
+        });
+
+    };
+
+})(window, jQuery, Controls);
+
 // leaflet map code
 var Map = Map || {};
 (function(window, $, exports) {
@@ -34,7 +57,36 @@ var Map = Map || {};
 }(window, jQuery, Map));
 
 
+var DateTools = DateTools || {};
+(function(window, $, exports){
+
+    exports.currentDate = moment();
+
+    exports.addDay = function() {
+        var future = DateTools.currentDate.add(1, 'day');
+        DateTools.currentDate = future;
+        return DateTools.formatDate(future);
+    };
+
+    exports.subDay = function() {
+        var past = DateTools.currentDate.subtract(1, 'day');
+        DateTools.currentDate = past;
+        return DateTools.formatDate(past);
+    };
+
+    exports.formatDate = function(momentDate) {
+        return momentDate.format('dddd, DD. MMMM YYYY');
+    };
+
+    exports.formatDateForAPI = function(momentDate) {
+        return momentDate.format('YYYY-MM-DD HH:mm:ss');
+    };
+
+}(window, jQuery, DateTools));
+
+
 // fire the engines
 $(function(){
     Map.init();
+    Controls.init();
 });

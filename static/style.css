@@ -41,6 +41,10 @@ textarea {
     border: #00dffc 1px solid;
 }
 
+.controls .add, .controls .sub {
+    cursor: pointer;
+}
+
 .button {
     height: 50px;
     padding: 5px 25px 5px 25px;
@@ -51,7 +55,7 @@ textarea {
 }
 .button:hover {
     cursor:pointer;
-    background-color: #
+    /*background-color: #*/
 }
 
 .wide-button {
@@ -91,22 +95,21 @@ textarea {
     height: 250px;
     margin: 0 auto;
 }
+.main .text-area textarea:hover {
+    outline: 1px solid #00dffc;
+}
 
 .main .photo-upload-area {
     text-align: center;
-    height: 64px;
     margin: 1%;
+    height: 100px;
 }
-.main .photo-upload-area span {
+.main .photo-upload-area .drop-area {
     padding: 1%;
     background-color: #008c9e;
     color: #fff;
+    height:100%;
 
-}
-
-.main .submit-area {
-    width: 100%;
-    text-align: center;
 }
 
 .main .location-area #map{
@@ -114,6 +117,12 @@ textarea {
     height: 200px;
     margin: 0 auto;
 }
+
+.main .submit-area {
+    width: 100%;
+    text-align: center;
+}
+
 
 /*********
  * Entry *

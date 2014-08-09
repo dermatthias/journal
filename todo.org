@@ -1,0 +1,12 @@
+* Motivation
+
+  Based on
+
+  Zach Holmann, Keeping a Journal
+  http://zachholman.com/posts/keeping-a-journal/
+
+  and on 59 Seconds by Richard Wiseman where writing things down makes you happy.
+  http://richardwiseman.wordpress.com/books/59-seconds-think-a-little-change-a-lot/
+
+* Search
+  - Woosh for full text search
