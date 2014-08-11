@@ -40,6 +40,11 @@ var Map = Map || {};
         }).addTo(Map.map);
 
         Map.map.on('click', Map.onMapClick);
+
+        // click listener for large map
+        $('#floating-map-icon').on('click', function(){
+            Map.showLargeMap();
+        });
     };
 
     exports.onMapClick = function(e) {
@@ -66,6 +71,30 @@ var Map = Map || {};
             maxZoom: 18
         }).addTo(entryMap);
         var marker = L.marker([lat, lng]).addTo(entryMap);
+    };
+
+    exports.showLargeMap = function() {
+        console.log('showing large map');
+        var largeMapDiv = $('#large-map');
+
+        // TODO: set size of map and position via JS
+
+        largeMapDiv.show();
+
+        var main = $('#main');
+        var latestLat =  main.data('latest-lat');
+        var latestLng =  main.data('latest-lng');
+
+        var largeMap = L.map('large-map').setView([latestLat, latestLng], 10);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 18
+        }).addTo(largeMap);
+
+        // TODO: query all markers via AJAX
+
+        // TODO: put all marker in the map
+
     };
 
 }(window, jQuery, Map));

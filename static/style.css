@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 3.5em;
 }
 
 textarea {
@@ -74,6 +74,10 @@ textarea {
     margin-bottom: 10%;
 }
 
+.clear {
+    clear: both;
+}
+
 /*************
  * Main      *
  *************/
@@ -83,9 +87,40 @@ textarea {
     color: #343838;
 }
 
+/************
+ * Timeline *
+ ************/
 .main .headline {
     text-align: center;
+    position: relative;
 }
+
+.floating-map-icon {
+    /*float:right;*/
+    position: absolute;
+    top: 0;
+    right:0px;
+}
+.floating-map-icon img {
+    width: 76px;
+    display: block;
+}
+.floating-map-icon img:hover {
+    cursor: pointer;
+}
+
+/*************
+ * Large Map *
+ *************/
+
+.large-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 97%;
+    height: 300px;
+}
+
 
 /*************
  * New Entry *

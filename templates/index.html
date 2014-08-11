@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="main">
+<div class="main" id="main" data-latest-lat="{{ entries[0].lat }}" data-latest-lng="{{ entries[0].lng }}">
     <div class="headline">
         <h1>Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span></h1>
     </div>
@@ -49,7 +49,12 @@
     </div>
 
     <div class="headline">
-        <h1>Timeline</h1>
+        <h1>Timeline
+            <span class="floating-map-icon">
+                <img id="floating-map-icon" src="/static/img/map-circle.png" alt="All entries on a map"/>
+            </span>
+        </h1>
+        <div class="clear"></div>
     </div>
 
     {% for entry in entries %}
@@ -70,6 +75,11 @@
 
         </div>
     {% endfor %}
+
+<div class="large-map hidden" id="large-map">
+
+</div>
+
 </div>
 <script src="/static/js/jquery-2.1.1.min.js" type="application/javascript"></script>
 <script src="/static/js/leaflet-0.7.3/leaflet.js" type="application/javascript"></script>

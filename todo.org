@@ -10,3 +10,11 @@
 
 * Search
   - Woosh for full text search
+
+
+* Todo
+  - Bilder hinzufügen
+  - Beitrag editieren
+  - Timeline
+  - Overview Map
+  - Single Beitrag View für Click on Map-Pin (Overlay?)
