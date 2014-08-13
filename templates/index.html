@@ -63,12 +63,13 @@
             <div class="text">
                 {{ entry.text_markdown|safe }}
                 <div class="location center-text">
+                    {% if entry.lat and entry.lng %}
                     I were here today: <a href="#" onClick="Map.showEntryMap({{ entry.id }});return false;">{{ entry.lat }}, {{ entry.lng }}</a>
 
                     <div id="entry-map-{{ entry.id }}" class="hidden entry-map" data-lat="{{ entry.lat }}" data-lng="{{ entry.lng }}">
 
                     </div>
-
+                    {% endif %}
                 </div>
 
             </div>
@@ -77,7 +78,9 @@
     {% endfor %}
 
 <div class="large-map hidden shadow" id="large-map">
-
+    <div class="large-map-close">
+        X
+    </div>
 </div>
 
 </div>

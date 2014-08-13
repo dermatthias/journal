@@ -42,8 +42,12 @@ var Map = Map || {};
         Map.map.on('click', Map.onMapClick);
 
         // click listener for large map
-        $('#floating-map-icon').on('click', function(){
+        $('#floating-map-icon').on('click', function(event){
             Map.showLargeMap();
+        });
+
+        $('.large-map-close').on('click', function(event){
+            $(this).parent().fadeOut();
         });
     };
 

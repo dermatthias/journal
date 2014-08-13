@@ -125,9 +125,17 @@ textarea {
     left: 0;
     width: 97%;
     height: 300px;
-
     border: 1px solid #0078A8;
-
+}
+.large-map .large-map-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    font-size: 2em;
+}
+.large-map .large-map-close:hover {
+    cursor: pointer;
 }
 
 

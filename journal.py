@@ -27,8 +27,9 @@ def index():
 def insert():
     text = request.form['text']
     entry = models.Entry(text)
-    entry.lat = request.form['lat']
-    entry.lng = request.form['lng']
+    if request.form['lat'] and request.form['lng']:
+        entry.lat = request.form['lat']
+        entry.lng = request.form['lng']
     if request.form['date']:
         entry.date = datetime.datetime.strptime((request.form['date']), '%Y-%m-%d %H:%M:%S')
     db.session.add(entry)
