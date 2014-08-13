@@ -74,12 +74,24 @@ var Map = Map || {};
     };
 
     exports.showLargeMap = function() {
-        console.log('showing large map');
         var largeMapDiv = $('#large-map');
 
-        // TODO: set size of map and position via JS
+        var currentWindowWidth = $(window).width();
+        var currentWindowHeight = $(window).height();
+        var mapWidth = currentWindowWidth - (currentWindowWidth / 10);
+        var mapHeight = currentWindowHeight - (currentWindowHeight / 10);
 
-        largeMapDiv.show();
+        largeMapDiv.width(mapWidth);
+        largeMapDiv.height(mapHeight);
+
+        console.log($(window).scrollTop());
+
+        largeMapDiv.css({
+            top: $(window).scrollTop() + (currentWindowHeight / 10 / 2),
+            left: currentWindowWidth / 10 / 2
+        });
+
+        largeMapDiv.fadeIn();
 
         var main = $('#main');
         var latestLat =  main.data('latest-lat');

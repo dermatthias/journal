@@ -18,3 +18,4 @@
   - Timeline
   - Overview Map
   - Single Beitrag View für Click on Map-Pin (Overlay?)
+  - Schließe kleine Map wenn man nochmal auf die Location klickt

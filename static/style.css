@@ -74,6 +74,12 @@ textarea {
     margin-bottom: 10%;
 }
 
+.shadow {
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+}
+
 .clear {
     clear: both;
 }
@@ -119,6 +125,9 @@ textarea {
     left: 0;
     width: 97%;
     height: 300px;
+
+    border: 1px solid #0078A8;
+
 }
 
 
