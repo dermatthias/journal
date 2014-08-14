@@ -1,6 +1,7 @@
 import datetime
 from flask import Flask
 from flask import request, redirect, url_for, render_template
+from flask import json
 from flask.ext.sqlalchemy import SQLAlchemy
 import markdown2
 
@@ -41,6 +42,17 @@ def insert():
 def add_location():
     entry_id = request.form['entry_id']
     return redirect(url_for('index'))
+
+
+@app.route('/all_locations', methods=['GET'])
+def all_locations():
+    entries = models.Entry.query.all()
+    json_locations = []
+    for e in entries:
+        if e.lat and e.lng:
+            json_locations.append([e.lat, e.lng])
+
+    return json.dumps(json_locations)
 
 
 

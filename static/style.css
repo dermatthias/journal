@@ -129,10 +129,11 @@ textarea {
 }
 .large-map .large-map-close {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -11px;
+    right: 0px;
     z-index: 1000;
-    font-size: 2em;
+    font-size: 3em;
+    color: #e74c3c;
 }
 .large-map .large-map-close:hover {
     cursor: pointer;
@@ -168,7 +169,6 @@ textarea {
     background-color: #008c9e;
     color: #fff;
     height:100%;
-
 }
 
 .main .location-area #map{

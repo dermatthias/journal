@@ -30,6 +30,7 @@ var Map = Map || {};
 
     exports.map = undefined;
     exports.currentMarker = undefined;
+    exports.mapLoaded = false;
 
     exports.init = function() {
         Map.map = L.map('map').setView([48.395, 9.98], 10);
@@ -80,37 +81,59 @@ var Map = Map || {};
     exports.showLargeMap = function() {
         var largeMapDiv = $('#large-map');
 
-        var currentWindowWidth = $(window).width();
-        var currentWindowHeight = $(window).height();
-        var mapWidth = currentWindowWidth - (currentWindowWidth / 10);
-        var mapHeight = currentWindowHeight - (currentWindowHeight / 10);
+        if (Map.mapLoaded) {
+            largeMapDiv.fadeIn();
+        } else {
 
-        largeMapDiv.width(mapWidth);
-        largeMapDiv.height(mapHeight);
+            var currentWindowWidth = $(window).width();
+            var currentWindowHeight = $(window).height();
+            var mapWidth = currentWindowWidth - (currentWindowWidth / 10);
+            var mapHeight = currentWindowHeight - (currentWindowHeight / 10);
 
-        console.log($(window).scrollTop());
+            largeMapDiv.width(mapWidth);
+            largeMapDiv.height(mapHeight);
 
-        largeMapDiv.css({
-            top: $(window).scrollTop() + (currentWindowHeight / 10 / 2),
-            left: currentWindowWidth / 10 / 2
-        });
+            largeMapDiv.css({
+                top: $(window).scrollTop() + (currentWindowHeight / 10 / 2),
+                left: currentWindowWidth / 10 / 2
+            });
 
-        largeMapDiv.fadeIn();
+            largeMapDiv.fadeIn();
 
-        var main = $('#main');
-        var latestLat =  main.data('latest-lat');
-        var latestLng =  main.data('latest-lng');
+            var main = $('#main');
+            var latestLat = main.data('latest-lat');
+            var latestLng = main.data('latest-lng');
 
-        var largeMap = L.map('large-map').setView([latestLat, latestLng], 10);
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            maxZoom: 18
-        }).addTo(largeMap);
+            var center;
+            if (latestLat != "None" && latestLng != "None") {
+                center = [latestLat, latestLng];
+            } else {
+                center = [48.3769, 9.998];
+            }
 
-        // TODO: query all markers via AJAX
+            var largeMap = L.map('large-map').setView(center, 10);
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                maxZoom: 18
+            }).addTo(largeMap);
 
-        // TODO: put all marker in the map
+            // query all markers via AJAX
+            $.ajax({
+                url: 'all_locations',
+                type: 'GET',
+                dataType: 'json'
+            }).done(function (data) {
+                // put all marker in the map
+                $.each(data, function (index, value) {
+                    L.marker([value[0], value[1]]).addTo(largeMap);
+                });
 
+            }).fail(function (jqXHR, status) {
+
+            });
+
+            Map.mapLoaded = true;
+        }
     };
 
 }(window, jQuery, Map));
