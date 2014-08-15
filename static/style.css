@@ -7,6 +7,9 @@
   red:#e74c3c
 
 */
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
 
 body {
     font-family: 'Yanone Kaffeesatz', sans-serif;
@@ -22,6 +25,9 @@ body {
 .hidden {
     display: none;
 }
+.block {
+    display: block;
+}
 a {
     color: #4ECDC4;
     text-decoration: none;
@@ -29,6 +35,7 @@ a {
 a:hover {
     color: #C44D58;
     text-decoration: underline;
+    cursor: pointer;
 }
 a:visited {
     color: #4ECDC4;
@@ -42,8 +49,21 @@ h1 {
     font-size: 3.5em;
 }
 
-textarea {
-    border: #556270 1px solid;
+input[type=text], textarea {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: rgba(81, 203, 238, 1) 1px solid;
+}
+input[type=text]:focus, textarea:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .controls .add, .controls .sub {
@@ -118,7 +138,6 @@ textarea {
 /*************
  * Large Map *
  *************/
-
 .large-map {
     position: absolute;
     top: 0;
@@ -153,11 +172,6 @@ textarea {
     height: 250px;
     margin: 0 auto;
 }
-.main .text-area textarea:hover,
-.main .text-area textarea:active,
-.main .text-area textarea:focus {
-    outline: 1px solid #556270;
-}
 
 .main .photo-upload-area {
     text-align: center;
@@ -189,29 +203,48 @@ textarea {
 .main .entry h2{
     text-align: center;
     font-size: 2em;
+    position: relative;
 }
 
 .main .entry .text {
     font-family: 'Alegreya', serif;
     padding: 0 15%;
-    margin-bottom: 10%;
 }
+
+.main .entry .text-edit {
+    width: 70%;
+    height: 200px;
+    margin: 0 15%;
+}
+
 .main .entry .text h1 {
     font-size: 1.8em;
 }
+
 .main .entry .text h2 {
     font-size: 1.5em;
     text-align: left;
 }
+
 .main .entry .text h3 {
     font-size: 1.2em;
 }
+
 .main .entry .text h3 {
     font-size: 1.1em;
 }
+
 .main .entry .location {
     margin-top: 20px;
     font-style: italic;
+}
+
+.main .entry .entry-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    font-size: 0.75em;
 }
 
 .main .entry .entry-map {

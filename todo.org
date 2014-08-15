@@ -16,7 +16,8 @@
   - Bilder hinzufügen
   - Beitrag editieren
   - Timeline
-  - Overview Map
+  - DONE Overview Map
   - Single Beitrag View für Click on Map-Pin (Overlay?)
-  - Schließe kleine Map wenn man nochmal auf die Location klickt
-  - Was tun, wenn man keine Location setzt?
+  - DONE Schließe kleine Map wenn man nochmal auf die Location klickt
+  - DONE Was tun, wenn man keine Location setzt?
+  - Live Markdown Preview in rendered Text

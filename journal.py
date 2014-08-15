@@ -37,6 +37,23 @@ def insert():
     db.session.commit()
     return redirect(url_for('index'))
 
+@app.route('/edit/', methods=['POST'])
+def edit():
+    entry_id = request.form['entry_id']
+    edited_text = request.form['text']
+    edited_text_markdown = markdown2.markdown(edited_text)
+
+    entry = models.Entry.query.get(entry_id)
+    entry.text = edited_text
+
+    if request.form['lat'] and request.form['lng']:
+        entry.lat = request.form['lat']
+        entry.lng = request.form['lng']
+
+    db.session.commit()
+
+    response = {'status': 'ok', 'code': 200, 'content': edited_text_markdown}
+    return json.dumps(response)
 
 @app.route('/add_location', methods=['POST'])
 def add_location():
