@@ -223,7 +223,8 @@ var Map = Map || {};
             }).done(function (data) {
                 // put all marker in the map
                 $.each(data, function (index, value) {
-                    L.marker([value[0], value[1]]).addTo(largeMap);
+                    var marker = L.marker([value.lat, value.lng]).addTo(largeMap);
+                    marker.bindPopup(value.date + '<br>' + '<a name="foo">Show entry</a>');
                 });
 
             }).fail(function (jqXHR, status) {

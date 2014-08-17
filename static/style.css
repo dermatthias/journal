@@ -66,8 +66,18 @@ input[type=text]:focus, textarea:focus {
   border: 1px solid rgba(81, 203, 238, 1);
 }
 
+.controls {
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    margin-left: 10px;
+    font-size: 0.33em;
+}
 .controls .add, .controls .sub {
     cursor: pointer;
+}
+.controls .add:hover, .controls .sub:hover {
+    color: #00dffc;
 }
 
 .button {
@@ -89,6 +99,9 @@ input[type=text]:focus, textarea:focus {
 
 .margin-top {
     margin-top: 10%;
+}
+.margin-top-half {
+    margin-top: 5%;
 }
 .margin-bottom {
     margin-bottom: 10%;
@@ -120,15 +133,18 @@ input[type=text]:focus, textarea:focus {
     text-align: center;
     position: relative;
 }
+.main-headline {
+    position: relative;
+}
 
 .floating-map-icon {
     /*float:right;*/
     position: absolute;
-    top: 0;
+    top: 3px;
     right:0px;
 }
 .floating-map-icon img {
-    width: 76px;
+    width: 60px;
     display: block;
 }
 .floating-map-icon img:hover {

@@ -13,11 +13,16 @@
 
 
 * Todo
+  1) Single Beitrag View für Click on Map-Pin (Overlay?)
+  2) Design schick machen
+  3) Relase auf github
+
+  Später:
   - Bilder hinzufügen
-  - Beitrag editieren
   - Timeline
+  - Live Markdown Preview in rendered Text
+
   - DONE Overview Map
-  - Single Beitrag View für Click on Map-Pin (Overlay?)
+  - DONE Beitrag editieren
   - DONE Schließe kleine Map wenn man nochmal auf die Location klickt
   - DONE Was tun, wenn man keine Location setzt?
-  - Live Markdown Preview in rendered Text

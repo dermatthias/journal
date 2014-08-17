@@ -13,14 +13,23 @@
 
 <div class="main" id="main" data-latest-lat="{{ entries[0].lat }}" data-latest-lng="{{ entries[0].lng }}">
     <div class="headline">
-        <h1>Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span></h1>
+        <h1 class="main-headline">
+
+            Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span>
+
+            <div class="controls">
+                <div class="add">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+                <div class="sub">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+        </h1>
     </div>
     <div class="new-area">
         <h2 class="center-text">
             <span>What happened today?</span>
-            <span class="controls">
-                <span class="add">+</span> <span class="sub">-</span>
-            </span>
         </h2>
         <form action="{{ url_for('insert') }}" method="POST">
 
@@ -39,7 +48,7 @@
                 <div class="drop-area">Drop pictures here.</div>
             </div>
             #}
-            <div class="submit-area margin-top">
+            <div class="submit-area margin-top-half">
                 <input type="submit" value="Add entry" class="button wide-button center ">
             </div>
 

@@ -69,7 +69,12 @@ def all_locations():
     json_locations = []
     for e in entries:
         if e.lat and e.lng:
-            json_locations.append([e.lat, e.lng])
+            loc = {'date': e.date,
+                   'id': e.id,
+                   'lat': e.lat,
+                   'lng': e.lng
+                   }
+            json_locations.append(loc)
 
     return json.dumps(json_locations)
 
