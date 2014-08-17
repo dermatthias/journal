@@ -37,6 +37,7 @@ def insert():
     db.session.commit()
     return redirect(url_for('index'))
 
+
 @app.route('/edit/', methods=['POST'])
 def edit():
     entry_id = request.form['entry_id']
@@ -54,6 +55,7 @@ def edit():
 
     response = {'status': 'ok', 'code': 200, 'content': edited_text_markdown}
     return json.dumps(response)
+
 
 @app.route('/add_location', methods=['POST'])
 def add_location():

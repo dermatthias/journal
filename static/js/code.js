@@ -31,9 +31,12 @@ var Controls = Controls || {};
             var entry_id = $(this).parents('.entry').data('entry-id');
             $(this).parent().siblings('.edit-controls').fadeToggle();
             var entry_element = $(this).parent().parent();
-
-            // get the entryMap for this entry
-            Map.showEntryMap(entry_id, true, entry_element);
+            // toggle edit mode
+            if (entry_element.data('in-edit-mode')) {
+                entry_element.data('in-edit-mode', false);
+            } else {
+                entry_element.data('in-edit-mode', true);
+            }
 
             $(this).parent().parent().find('.submit-edit').on('click', function(event){
                 Controls.updateEntry(entry_id, entry_element);
@@ -44,6 +47,8 @@ var Controls = Controls || {};
     exports.updateEntry = function(id, entry_element) {
         var textarea_element = entry_element.find('.text-edit');
         var text = textarea_element.val();
+        // after the edit was submitted, close the edit mode
+        entry_element.data('in-edit-mode', false);
 
         $.ajax({
             url: '/edit/',
@@ -76,6 +81,8 @@ var Map = Map || {};
     exports.map = undefined;
     exports.currentMarker = undefined;
     exports.mapLoaded = false;
+    exports.maps = {};
+    exports.mapsMarker = {};
 
     exports.init = function() {
         Map.map = L.map('map').setView([48.395, 9.98], 10);
@@ -98,7 +105,7 @@ var Map = Map || {};
 
         $('.location-text').on('click', function(event){
             var entry_id = $(this).data('entry-id');
-            Map.showEntryMap(entry_id, false);
+            Map.showEntryMap(entry_id);
         });
     };
 
@@ -114,33 +121,52 @@ var Map = Map || {};
         $('#form-lng').val(e.latlng.lng);
     };
 
-    exports.showEntryMap = function(id, draggable, entry_element) {
+    exports.showEntryMap = function(id) {
         var entryMapDiv = $('#entry-map-'+id);
+
+        // get the entry element of this ma
+        var entry_element = entryMapDiv.parent().parent();
+        var in_edit_mode = entry_element.data('in-edit-mode');
+
         if(entryMapDiv.is(':visible')) {
             entryMapDiv.slideUp();
         }  else {
-            var lat = entryMapDiv.data('lat');
-            var lng = entryMapDiv.data('lng');
-            var entryMap = L.map('entry-map-' + id).setView([lat, lng], 10);
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-                maxZoom: 18
-            }).addTo(entryMap);
-            console.log(draggable);
-            var marker = L.marker([lat, lng], {draggable: draggable}).addTo(entryMap);
-            // if we can drag and edit the marker, set the new position to the edit-text textarea data field
-            // and later submit them with the ajax request.
-            marker.on('dragend', function(event){
-                var position  = marker.getLatLng();
-                if (entry_element != undefined) {
-                    var textarea_element = entry_element.find('.text-edit');
-                    textarea_element.data('edited-lat', position.lat);
-                    textarea_element.data('edited-lng', position.lng);
-                    console.log('lat lng set ' + position.lat + "/" + position.lng );
-                }
-            });
 
-            entryMapDiv.slideDown();
+            entryMapDiv.slideDown(400, function(){
+                var lat = entryMapDiv.data('lat');
+                var lng = entryMapDiv.data('lng');
+
+                if (entryMapDiv.data('initialized')) {
+                    console.log('map was already initialized. just showing it.');
+                    var entryMap = Map.maps[id];
+                } else {
+
+                    var entryMap = L.map('entry-map-' + id).setView([lat, lng], 10);
+                    Map.maps[id] = entryMap;
+                    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                        maxZoom: 18
+                    }).addTo(entryMap);
+
+                    entryMapDiv.data('initialized', true);
+                }
+
+                if (!Map.mapsMarker[id]) {
+                    var marker = L.marker([lat, lng], {draggable: in_edit_mode}).addTo(entryMap);
+                    Map.mapsMarker[id] = marker;
+                    // if we can drag and edit the marker, set the new position to the edit-text textarea data field
+                    // and later submit them with the ajax request.
+                    marker.on('dragend', function (event) {
+                        var position = marker.getLatLng();
+                        if (entry_element != undefined) {
+                            var textarea_element = entry_element.find('.text-edit');
+                            textarea_element.data('edited-lat', position.lat);
+                            textarea_element.data('edited-lng', position.lng);
+                        }
+                    });
+                }
+
+            });
         }
     };
 
