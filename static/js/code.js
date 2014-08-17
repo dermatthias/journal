@@ -38,6 +38,8 @@ var Controls = Controls || {};
                 entry_element.data('in-edit-mode', true);
             }
 
+            $('#entry-map-'+entry_id).slideUp();
+
             $(this).parent().parent().find('.submit-edit').on('click', function(event){
                 Controls.updateEntry(entry_id, entry_element);
             });
@@ -151,7 +153,11 @@ var Map = Map || {};
                     entryMapDiv.data('initialized', true);
                 }
 
-                if (!Map.mapsMarker[id]) {
+
+                if (Map.mapsMarker[id]) {
+                    var marker = Map.mapsMarker[id];
+                    marker.dragging.enable();
+                } else {
                     var marker = L.marker([lat, lng], {draggable: in_edit_mode}).addTo(entryMap);
                     Map.mapsMarker[id] = marker;
                     // if we can drag and edit the marker, set the new position to the edit-text textarea data field
