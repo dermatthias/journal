@@ -68,6 +68,8 @@ input[type=text], textarea {
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: rgba(252, 217, 56, 1) 1px solid;
+    font-family: 'Alegreya', serif;
+    font-size: 1.15em;
 }
 input[type=text]:focus, textarea:focus {
   box-shadow: 0 0 5px rgba(252, 217, 56, 1);
