@@ -12,88 +12,101 @@
 <body>
 
 <div class="main" id="main" data-latest-lat="{{ entries[0].lat }}" data-latest-lng="{{ entries[0].lng }}">
-    <div class="headline">
-        <h1 class="main-headline">
+    <div class="upper-background">
+        <div class="headline">
+            <h1 class="main-headline">
 
-            Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span>
+                Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span>
 
-            <div class="controls">
-                <div class="add">
-                    <i class="fa fa-caret-up"></i>
-                </div>
-                <div class="sub">
-                    <i class="fa fa-caret-down"></i>
-                </div>
-            </div>
-        </h1>
-    </div>
-    <div class="new-area">
-        <h2 class="center-text">
-            <span>What happened today?</span>
-        </h2>
-        <form action="{{ url_for('insert') }}" method="POST">
-
-            <div class="text-area">
-                <textarea name="text"></textarea>
-            </div>
-
-            <div class="location-area center-text">
-                <h2>Where were I today?</h2>
-                <div id="map">
-                </div>
-            </div>
-            {#
-            <div class="photo-upload-area center-text">
-                <h2>Do pictures tell more than thousand words?</h2>
-                <div class="drop-area">Drop pictures here.</div>
-            </div>
-            #}
-            <div class="submit-area margin-top-half">
-                <input type="submit" value="Add entry" class="button wide-button center ">
-            </div>
-
-            <input type="hidden" name="date" value="" id="form-date">
-            <input type="hidden" name="lat" value="" id="form-lat">
-            <input type="hidden" name="lng" value="" id="form-lng">
-        </form>
-    </div>
-
-    <div class="headline">
-        <h1>Timeline
-            <span class="floating-map-icon">
-                <img id="floating-map-icon" src="/static/img/map-circle.png" alt="All entries on a map"/>
-            </span>
-        </h1>
-        <div class="clear"></div>
-    </div>
-
-    {% for entry in entries %}
-        <div class="entry margin-bottom" data-entry-id="{{ entry.id }}">
-            <h2>{{ entry.date.strftime('%A, %d. %B %Y') }} <a class="entry-edit"><i class="fa fa-pencil-square-o"></i></a></h2>
-            <div class="text">
-                {{ entry.text_markdown|safe }}
-            </div>
-
-            <div class="location center-text">
-                {% if entry.lat and entry.lng %}
-                    I were here today: <a class="location-text" data-entry-id="{{ entry.id }}">{{ entry.lat }}, {{ entry.lng }}</a>
-
-                    <div id="entry-map-{{ entry.id }}" class="hidden entry-map" data-lat="{{ entry.lat }}" data-lng="{{ entry.lng }}">
+                <div class="controls">
+                    <div class="add">
+                        <i class="fa fa-caret-up"></i>
                     </div>
-                {% endif %}
-            </div>
-            <textarea class="hidden text-edit edit-controls">{{ entry.text|safe}}</textarea>
-            <div class="hidden edit-controls">
-                <button class="button submit-edit center block">And done</button>
-            </div>
+                    <div class="sub">
+                        <i class="fa fa-caret-down"></i>
+                    </div>
+                </div>
+            </h1>
         </div>
-    {% endfor %}
 
-<div class="large-map hidden shadow" id="large-map">
-    <div class="large-map-close">
-        <i class="fa fa-times-circle"></i>
+        <div class="new-area">
+            <h2 class="center-text">
+                <span>What happened today?</span>
+            </h2>
+            <form action="{{ url_for('insert') }}" method="POST">
+
+                <div class="text-area">
+                    <textarea name="text"></textarea>
+                </div>
+
+                <div class="location-area center-text">
+                    <h2>Where were I today?</h2>
+                    <div id="map">
+                    </div>
+                </div>
+                {#
+                <div class="photo-upload-area center-text">
+                    <h2>Do pictures tell more than thousand words?</h2>
+                    <div class="drop-area">Drop pictures here.</div>
+                </div>
+                #}
+                <div class="submit-area margin-top-half">
+                    <input type="submit" value="Add entry" class="button wide-button center ">
+                </div>
+
+                <input type="hidden" name="date" value="" id="form-date">
+                <input type="hidden" name="lat" value="" id="form-lat">
+                <input type="hidden" name="lng" value="" id="form-lng">
+            </form>
+        </div>
     </div>
-</div>
+
+    <div class="lower-background">
+        <div class="timeline-container">
+            <div class="headline">
+                <h1>Timeline
+                    <span class="floating-map-icon">
+                        <img id="floating-map-icon" src="/static/img/map-circle.png" alt="All entries on a map"/>
+                    </span>
+                </h1>
+                <div class="clear"></div>
+            </div>
+
+            {% for entry in entries %}
+                <div class="entry margin-bottom" data-entry-id="{{ entry.id }}">
+                    <h2>{{ entry.date.strftime('%A, %d. %B %Y') }} <a class="entry-edit"><i class="fa fa-pencil-square-o"></i></a></h2>
+                    <div class="text">
+                        {{ entry.text_markdown|safe }}
+                    </div>
+
+                    <div class="location center-text">
+                        {% if entry.lat and entry.lng %}
+                            I've been here: <a class="location-text" data-entry-id="{{ entry.id }}">{{ entry.lat|round(4) }}, {{ entry.lng|round(4) }}</a>
+
+                            <div id="entry-map-{{ entry.id }}" class="hidden entry-map" data-lat="{{ entry.lat }}" data-lng="{{ entry.lng }}">
+                            </div>
+                        {% endif %}
+                    </div>
+                    <textarea class="hidden text-edit edit-controls">{{ entry.text|safe}}</textarea>
+                    <div class="hidden edit-controls">
+                        <button class="button submit-edit center block">And done</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <a href="http://flurp.de">Made with <i class="fa fa-heart red"></i> in Ulm.</a>
+        </div>
+    </div>
+
+    <div class="large-map hidden shadow" id="large-map">
+        <div class="large-map-close">
+            <i class="fa fa-times-circle"></i>
+        </div>
+    </div>
 
 </div>
 <script src="/static/js/jquery-2.1.1.min.js" type="application/javascript"></script>

@@ -11,8 +11,16 @@
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
  }
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
+    margin: 0;
+    padding: 0;
     font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 1.2em;
 }
 
 .center {
@@ -44,9 +52,11 @@ a:visited {
 h1, h2, h3, h4, h5 {
     font-weight: 200;
 }
-
 h1 {
     font-size: 3.5em;
+}
+h2 {
+    font-size: 2em;
 }
 
 input[type=text], textarea {
@@ -57,17 +67,17 @@ input[type=text], textarea {
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
-    border: rgba(81, 203, 238, 1) 1px solid;
+    border: rgba(252, 217, 56, 1) 1px solid;
 }
 input[type=text]:focus, textarea:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  box-shadow: 0 0 5px rgba(252, 217, 56, 1);
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
-  border: 1px solid rgba(81, 203, 238, 1);
+  border: 1px solid rgba(252, 217, 56, 1);
 }
 
 .controls {
-    top: 10px;
+    top: 16px;
     right: 10px;
     position: absolute;
     margin-left: 10px;
@@ -84,13 +94,18 @@ input[type=text]:focus, textarea:focus {
     height: 50px;
     padding: 5px 25px 5px 25px;
     color: #fff;
-    background-color: #ff6b6b;
+    background-color: #54a4e3;
     border: none;
     font-size: 1.3em;
 }
 .button:hover {
     cursor:pointer;
-    /*background-color: #*/
+    background-color: #4c93cc;
+}
+.button:active {
+    cursor:pointer;
+    background-color: #427FB0;
+    border: 1px solid #366991;
 }
 
 .wide-button {
@@ -113,17 +128,31 @@ input[type=text]:focus, textarea:focus {
     box-shadow:         3px 3px 5px 6px #ccc;
 }
 
+.red {
+    color: #e74c3c;
+}
+
 .clear {
     clear: both;
+}
+
+.upper-background {
+    padding: 1px;
+    background-color: #386D97;
+    color: #fff;
+}
+
+.lower-background {
+
 }
 
 /*************
  * Main      *
  *************/
 .main {
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
     color: #343838;
+    margin: 0;
 }
 
 /************
@@ -132,16 +161,19 @@ input[type=text]:focus, textarea:focus {
 .main .headline {
     text-align: center;
     position: relative;
+    margin-top: 2%;
 }
 .main-headline {
     position: relative;
+    width: 50%;
+    margin: 0 auto;
 }
 
 .floating-map-icon {
-    /*float:right;*/
     position: absolute;
-    top: 3px;
-    right:0px;
+    top: 0;
+    right:0;
+    margin: 5px;
 }
 .floating-map-icon img {
     width: 60px;
@@ -179,7 +211,8 @@ input[type=text]:focus, textarea:focus {
  * New Entry *
  *************/
 .main .new-area {
-    margin-bottom: 20%;
+    width: 50%;
+    margin: 0 auto 5%;
 }
 
 .main .text-area textarea {
@@ -187,6 +220,7 @@ input[type=text]:focus, textarea:focus {
     width: 97%;
     height: 250px;
     margin: 0 auto;
+    background-color: #efece7;
 }
 
 .main .photo-upload-area {
@@ -216,6 +250,10 @@ input[type=text]:focus, textarea:focus {
 /*********
  * Entry *
  *********/
+.timeline-container {
+    width: 50%;
+    margin: 0 auto 5%;
+}
 .main .entry h2{
     text-align: center;
     font-size: 2em;
@@ -230,7 +268,7 @@ input[type=text]:focus, textarea:focus {
 .main .entry .text-edit {
     width: 70%;
     height: 200px;
-    margin: 0 15%;
+    margin: 10px 15% 10px;
 }
 
 .main .entry .text h1 {
@@ -266,4 +304,23 @@ input[type=text]:focus, textarea:focus {
 .main .entry .entry-map {
     width: 100%;
     height: 300px;
+}
+
+/*********
+ * Entry *
+ *********/
+.footer {
+    width: 50%;
+    margin: 0 auto 10px;
+    text-align: center;
+}
+.footer a {
+    text-decoration: none;
+    color: #343838;
+}
+.footer a:visited {
+    color: #343838;
+}
+.footer a:hover {
+    text-decoration: underline;
 }
