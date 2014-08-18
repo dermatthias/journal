@@ -27,7 +27,11 @@ def index():
 @app.route('/insert/', methods=['POST'])
 def insert():
     text = request.form['text']
+    if not text or len(text.strip()) == 0:
+        return redirect(url_for('index'))
+
     entry = models.Entry(text)
+
     if request.form['lat'] and request.form['lng']:
         entry.lat = request.form['lat']
         entry.lng = request.form['lng']
@@ -47,7 +51,7 @@ def edit():
     entry = models.Entry.query.get(entry_id)
     entry.text = edited_text
 
-    if request.form['lat'] and request.form['lng']:
+    if request.form.get('lat') and request.form.get('lng'):
         entry.lat = request.form['lat']
         entry.lng = request.form['lng']
 
