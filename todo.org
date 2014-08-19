@@ -14,8 +14,10 @@
 
 * Todo
   1) Single Beitrag View für Click on Map-Pin (Overlay?)
-  2) Design schick machen
-  3) Relase auf github
+  2) DONE Design schick machen
+  3) DONE Pagination
+  4) Large Map close icon
+  5) Relase auf github
 
   Später:
   - Bilder hinzufügen

@@ -6,6 +6,8 @@
 var Controls = Controls || {};
 (function(window, $, exports){
 
+    exports.currentNumOfEntries = 5;
+
     exports.init = function() {
 
         var title = $('#headline-date');
@@ -44,6 +46,34 @@ var Controls = Controls || {};
                 Controls.updateEntry(entry_id, entry_element);
             });
         });
+
+        // load more listener
+        $('#more-button').on('click', function(event){
+            var that = this;
+            $(this).hide();
+            $('#more-loader').show();
+
+            $.ajax({
+                url: '/get/',
+                type: 'GET',
+                dataType: 'html',
+                data: {
+                    limit: 5,
+                    offset: exports.currentNumOfEntries
+                }
+            }).done(function(data){
+                console.log('lalala');
+                $('#entries').append(data);
+
+                $(that).show();
+                $('#more-loader').hide();
+
+                exports.currentNumOfEntries += 5;
+
+            }).fail(function(jqXHR, status){
+
+            });
+        });
     };
 
     exports.updateEntry = function(id, entry_element) {
@@ -62,12 +92,12 @@ var Controls = Controls || {};
                 lat: textarea_element.data('edited-lat'),
                 lng: textarea_element.data('edited-lng')
             }
-        }).done(function (data) {
+        }).done(function(data) {
 
             entry_element.find('.edit-controls').fadeToggle();
             entry_element.find('.text').html(data.content);
 
-        }).fail(function (jqXHR, status) {
+        }).fail(function(jqXHR, status) {
 
         });
 

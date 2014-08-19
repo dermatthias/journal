@@ -12,14 +12,38 @@ db = SQLAlchemy(app)
 
 import models
 
+
 @app.route('/')
 def index():
-    entries = models.Entry.query.order_by(models.Entry.date.desc()).all()
+    entries = models.Entry.query\
+        .order_by(models.Entry.date.desc())\
+        .limit(5).offset(0)\
+        .all()
+
     # render markdown for all entries in DB
     for entry in entries:
         entry.text_markdown = markdown2.markdown(entry.text)
 
     return render_template('index.html',
+                           datetime=datetime.datetime,
+                           entries=entries)
+
+
+@app.route('/get/', methods=['GET'])
+def get():
+    limit = request.args.get('limit', 5)
+    offset = request.args.get('offset', 0)
+
+    entries = models.Entry.query\
+        .order_by(models.Entry.date.desc())\
+        .limit(limit).offset(offset)\
+        .all()
+
+    # render markdown for all entries in DB
+    for entry in entries:
+        entry.text_markdown = markdown2.markdown(entry.text)
+
+    return render_template('entries.html',
                            datetime=datetime.datetime,
                            entries=entries)
 
