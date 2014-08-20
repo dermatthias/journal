@@ -13,11 +13,13 @@
 
 
 * Todo
-  1) Single Beitrag View für Click on Map-Pin (Overlay?)
+  1) DONE Single Beitrag View für Click on Map-Pin (Overlay?)
   2) DONE Design schick machen
   3) DONE Pagination
-  4) Large Map close icon
-  5) Relase auf github
+  4) DONE Large Map close icon
+  5) Delete Entry
+  6) Cleanup FontAwesome, Fonts, leaflet etc.
+  6) Relase auf github
 
   Später:
   - Bilder hinzufügen

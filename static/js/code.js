@@ -74,6 +74,24 @@ var Controls = Controls || {};
 
             });
         });
+
+        $('.edit-delete').on('click', function (event) {
+            var entry_element = $(this).parent().parent().parent();
+            var entry_id = entry_element.data('entry-id');
+            console.log(entry_id);
+            $.ajax({
+                url: '/delete/',
+                type: 'POST',
+                dataType: 'json',
+                data: {entry_id: entry_id}
+            }).done(function(data) {
+                entry_element.fadeOut(400, function(){
+                    $(this).remove();
+                });
+            }).fail(function(jqXHR, status) {
+
+            });
+        })
     };
 
     exports.updateEntry = function(id, entry_element) {

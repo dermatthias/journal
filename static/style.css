@@ -309,6 +309,10 @@ input[type=text]:focus, textarea:focus {
     font-style: italic;
 }
 
+.main .entry .edit-controls {
+    position: relative;
+}
+
 .main .entry .entry-edit {
     position: absolute;
     top: 7px;
@@ -319,6 +323,14 @@ input[type=text]:focus, textarea:focus {
 }
 .main .entry .entry-edit:hover {
     color: #00b4cc;
+}
+
+.main .entry .edit-delete-container {
+    position: absolute;
+    top: 0;
+    right: 15%;
+    text-align: right;
+    font-size: 0.95em;
 }
 
 .main .entry .entry-map {

@@ -94,6 +94,18 @@ def edit():
     return json.dumps(response)
 
 
+@app.route('/delete/', methods=['POST'])
+def delete():
+    entry_id = request.form['entry_id']
+
+    entry = models.Entry.query.get(entry_id)
+    models.db.session.delete(entry)
+    models.db.session.commit()
+
+    response = {'status': 'ok', 'code': 200}
+    return json.dumps(response)
+
+
 @app.route('/add_location', methods=['POST'])
 def add_location():
     entry_id = request.form['entry_id']
