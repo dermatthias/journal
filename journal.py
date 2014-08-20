@@ -24,7 +24,7 @@ def index():
     for entry in entries:
         entry.text_markdown = markdown2.markdown(entry.text)
 
-    return render_template('index.html',
+    return render_template('main.html',
                            datetime=datetime.datetime,
                            entries=entries)
 
@@ -46,6 +46,15 @@ def get():
     return render_template('entries.html',
                            datetime=datetime.datetime,
                            entries=entries)
+
+
+@app.route('/get/<int:entry_id>', methods=['GET'])
+def get_entry(entry_id):
+    entry = models.Entry.query.get(entry_id)
+    entry.text_markdown = markdown2.markdown(entry.text)
+    return render_template('single.html',
+                           datetime=datetime.datetime,
+                           entry=entry)
 
 
 @app.route('/insert/', methods=['POST'])
@@ -97,7 +106,7 @@ def all_locations():
     json_locations = []
     for e in entries:
         if e.lat and e.lng:
-            loc = {'date': e.date,
+            loc = {'date': e.date.strftime('%a, %d. %B %Y'),
                    'id': e.id,
                    'lat': e.lat,
                    'lng': e.lng

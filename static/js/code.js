@@ -117,24 +117,26 @@ var Map = Map || {};
     exports.mapsMarker = {};
 
     exports.init = function() {
-        Map.map = L.map('map').setView([48.395, 9.98], 10);
 
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-            maxZoom: 18
-        }).addTo(Map.map);
+        if ($('#map').length != 0) {
+            Map.map = L.map('map').setView([48.395, 9.98], 10);
 
-        Map.map.on('click', Map.onMapClick);
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                maxZoom: 18
+            }).addTo(Map.map);
 
-        // click listener for large map
-        $('#floating-map-icon').on('click', function(event){
-            Map.showLargeMap();
-        });
+            Map.map.on('click', Map.onMapClick);
 
-        $('.large-map-close').on('click', function(event){
-            $(this).parent().fadeOut();
-        });
+            // click listener for large map
+            $('#floating-map-icon').on('click', function (event) {
+                Map.showLargeMap();
+            });
 
+            $('.large-map-close').on('click', function (event) {
+                $(this).parent().fadeOut();
+            });
+        }
         $('.location-text').on('click', function(event){
             var entry_id = $(this).data('entry-id');
             Map.showEntryMap(entry_id);
@@ -254,7 +256,8 @@ var Map = Map || {};
                 // put all marker in the map
                 $.each(data, function (index, value) {
                     var marker = L.marker([value.lat, value.lng]).addTo(largeMap);
-                    marker.bindPopup(value.date + '<br>' + '<a name="foo">Show entry</a>');
+                    var content = '<div class="bubble">'+value.date + '<br>' + '<a href="/get/'+value.id+'">Show me this single day</a>'+'</div>';
+                    marker.bindPopup(content);
                 });
 
             }).fail(function (jqXHR, status) {
@@ -292,6 +295,8 @@ var DateTools = DateTools || {};
     exports.formatDateForAPI = function(momentDate) {
         return momentDate.format('YYYY-MM-DD HH:mm:ss');
     };
+
+
 
 }(window, jQuery, DateTools));
 

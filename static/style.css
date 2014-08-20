@@ -5,6 +5,7 @@
   dressed: #00b4cc;
   aqua: #00dffc;
   red:#e74c3c
+  yellow: #fff200;
 
 */
 *, *:before, *:after {
@@ -181,12 +182,14 @@ input[type=text]:focus, textarea:focus {
     right:0;
     margin: 5px;
 }
-.floating-map-icon img {
+.floating-map-icon i {
     width: 60px;
     display: block;
+    color: #386D97;
 }
-.floating-map-icon img:hover {
+.floating-map-icon i:hover {
     cursor: pointer;
+    color: #00b4cc;
 }
 
 /*************
@@ -199,17 +202,19 @@ input[type=text]:focus, textarea:focus {
     width: 97%;
     height: 300px;
     border: 1px solid #0078A8;
+    z-index: 5000;
 }
 .large-map .large-map-close {
     position: absolute;
-    top: -11px;
-    right: 0px;
+    top: -7px;
+    right: 5px;
     z-index: 1000;
     font-size: 3em;
-    color: #e74c3c;
+    color: #386D97;
 }
 .large-map .large-map-close:hover {
     cursor: pointer;
+    color: #00b4cc;
 }
 
 
@@ -243,7 +248,7 @@ input[type=text]:focus, textarea:focus {
 
 .main .location-area #map{
     width: 97%;
-    height: 200px;
+    height: 250px;
     margin: 0 auto;
 }
 
@@ -268,7 +273,12 @@ input[type=text]:focus, textarea:focus {
 
 .main .entry .text {
     font-family: 'Alegreya', serif;
+    font-size: 1.1em;
     padding: 0 15%;
+}
+
+.main .narrow .entry .text {
+    padding: 0 30%;
 }
 
 .main .entry .text-edit {
@@ -305,6 +315,10 @@ input[type=text]:focus, textarea:focus {
     right: 30px;
     display: none;
     font-size: 0.75em;
+    color: #386D97;
+}
+.main .entry .entry-edit:hover {
+    color: #00b4cc;
 }
 
 .main .entry .entry-map {
@@ -312,9 +326,22 @@ input[type=text]:focus, textarea:focus {
     height: 300px;
 }
 
-/*********
- * Entry *
- *********/
+.main .backlink {
+    font-size: 1.2em;
+}
+
+/**********
+ * Bubble *
+ **********/
+
+.bubble {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    font-size: 2em;
+}
+
+/**********
+ * Footer *
+ **********/
 .footer {
     width: 50%;
     margin: 0 auto 10px;

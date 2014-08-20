@@ -1,21 +1,3 @@
 {% for entry in entries %}
-                <div class="entry margin-bottom" data-entry-id="{{ entry.id }}">
-                    <h2>{{ entry.date.strftime('%A, %d. %B %Y') }} <a class="entry-edit"><i class="fa fa-pencil-square-o"></i></a></h2>
-                    <div class="text">
-                        {{ entry.text_markdown|safe }}
-                    </div>
-
-                    <div class="location center-text">
-                        {% if entry.lat and entry.lng %}
-                            I've been here: <a class="location-text" data-entry-id="{{ entry.id }}">{{ entry.lat|round(4) }}, {{ entry.lng|round(4) }}</a>
-
-                            <div id="entry-map-{{ entry.id }}" class="hidden entry-map" data-lat="{{ entry.lat }}" data-lng="{{ entry.lng }}">
-                            </div>
-                        {% endif %}
-                    </div>
-                    <textarea class="hidden text-edit edit-controls">{{ entry.text|safe}}</textarea>
-                    <div class="hidden edit-controls">
-                        <button class="button submit-edit center block">And done</button>
-                    </div>
-                </div>
+    {% include 'entry.html' %}
 {% endfor %}

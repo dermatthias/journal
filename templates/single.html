@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block single %}
+
+    <div class="headline">
+        <h1 class="main-headline">A single day</h1>
+    </div>
+
+    <div class="backlink center-text">
+        <a href="/">Back to main page</a>
+    </div>
+
+    <div class="narrow">
+        {% include 'entry.html' %}
+    </div>
+{% endblock %}

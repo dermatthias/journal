@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block latest %}
+    data-latest-lat="{{ entries[0].lat }}" data-latest-lng="{{ entries[0].lng }}"
+{% endblock %}
+
+{% block main %}
+<div class="upper-background">
+    <div class="headline">
+        <h1 class="main-headline">
+
+            Today is <span id="headline-date">{{ datetime.now().strftime('%A, %d. %B %Y') }}</span>
+
+            <div class="controls">
+                <div class="add">
+                    <i class="fa fa-caret-up"></i>
+                </div>
+                <div class="sub">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+        </h1>
+    </div>
+
+    <div class="new-area">
+        <h2 class="center-text">
+            <span>What happened today?</span>
+        </h2>
+        <form action="{{ url_for('insert') }}" method="POST">
+
+            <div class="text-area">
+                <textarea name="text"></textarea>
+            </div>
+
+            <div class="location-area center-text">
+                <h2>Where were I today?</h2>
+                <div id="map">
+                </div>
+            </div>
+            {#
+                <div class="photo-upload-area center-text">
+                    <h2>Do pictures tell more than thousand words?</h2>
+                    <div class="drop-area">Drop pictures here.</div>
+                </div>
+                #}
+            <div class="submit-area margin-top-half">
+                <input type="submit" value="Add entry" class="button wide-button center ">
+            </div>
+
+            <input type="hidden" name="date" value="" id="form-date">
+            <input type="hidden" name="lat" value="" id="form-lat">
+            <input type="hidden" name="lng" value="" id="form-lng">
+        </form>
+    </div>
+</div>
+
+    <div class="lower-background">
+        <div class="timeline-container">
+            <div class="headline">
+                <h1>Timeline
+                    <span class="floating-map-icon">
+                        <i class="fa fa-rocket" id="floating-map-icon"></i>
+                        {#  <img id="floating-map-icon" src="/static/img/map-circle.png" alt="All entries on a map"/> #}
+                    </span>
+                </h1>
+                <div class="clear"></div>
+            </div>
+
+        <div id="entries">
+
+            {% include 'entries.html' %}
+
+        </div>
+        <div class="center center-text">
+            <button id="more-button" class="button">Load more</button>
+            <div class="hidden" id="more-loader">
+                <img class="more-loader" src="/static/img/loading-bars.svg">
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>
+            <a href="http://flurp.de">Made with <i class="fa fa-heart red"></i> in Ulm.</a>
+        </div>
+    </div>
+
+    <div class="large-map hidden shadow" id="large-map">
+        <div class="large-map-close">
+            <i class="fa fa-times-circle"></i>
+        </div>
+    </div>
+
+{% endblock %}
