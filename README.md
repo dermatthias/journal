@@ -21,8 +21,15 @@ delete your entries. I run my journal on a Raspberry Pi on my local network at h
  
 
 ### Setup
-This is a [Flask](http://flask.pocoo.org/) app. So basically all you need is to setup flask, install the dependencies (see below) and run 
+This is a [Flask](http://flask.pocoo.org/) app. So basically all you need is to setup flask, 
+install the dependencies (see below), init the database and run flask: 
 
+    (start a python shell, like 'python' or 'ipython')   
+    import journal
+    journal.db.create_all()
+    
+    (quit the shell, run the following command:)
+    
     python journal.py
 
 This starts the Flask development server, which could be enough for your usecase. But 

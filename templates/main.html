@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block latest %}
+    {% if entries[0] %}
     data-latest-lat="{{ entries[0].lat }}" data-latest-lng="{{ entries[0].lng }}"
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -70,13 +72,16 @@
             {% include 'entries.html' %}
 
         </div>
+
         <div class="center center-text">
+        {% if entries.length %}
             <button id="more-button" class="button">Load more</button>
             <div class="hidden" id="more-loader">
                 <img class="more-loader" src="/static/img/loading-bars.svg">
             </div>
-        </div>
-
+        {% else %}
+            No entries yet. It's about time to write something!
+        {% endif %}
         </div>
     </div>
 
