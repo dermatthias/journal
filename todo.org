@@ -19,7 +19,8 @@
   4) DONE Large Map close icon
   5) Delete Entry
   6) Cleanup FontAwesome, Fonts, leaflet etc.
-  6) Relase auf github
+  7) die sache mit den DB session verstehen. Und wie steckt man am besten das model in eine eigene file?
+  8) Relase auf github
 
   Später:
   - Bilder hinzufügen
