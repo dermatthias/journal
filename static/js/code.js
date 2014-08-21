@@ -62,7 +62,6 @@ var Controls = Controls || {};
                     offset: exports.currentNumOfEntries
                 }
             }).done(function(data){
-                console.log('lalala');
                 $('#entries').append(data);
 
                 $(that).show();
@@ -78,7 +77,6 @@ var Controls = Controls || {};
         $('.edit-delete').on('click', function (event) {
             var entry_element = $(this).parent().parent().parent();
             var entry_id = entry_element.data('entry-id');
-            console.log(entry_id);
             $.ajax({
                 url: '/delete/',
                 type: 'POST',
@@ -189,7 +187,6 @@ var Map = Map || {};
                 var lng = entryMapDiv.data('lng');
 
                 if (entryMapDiv.data('initialized')) {
-                    console.log('map was already initialized. just showing it.');
                     var entryMap = Map.maps[id];
                 } else {
 
