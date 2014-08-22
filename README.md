@@ -8,6 +8,8 @@ post ['Keeping a journal'](http://zachholman.com/posts/keeping-a-journal/) by Za
 They both emphasize the importance to keep a journal, both for remembering things, reliving memories 
 and to keep you happy (read Richards book and the chapter on happiness).
 
+### Demo
+I have a demo journal running at <http://journal.flurp.de>, which resets it's database every 30 minutes.
 
 ### Features
 I wanted to make this really simple to write entries and to save only the most important metadata of an
