@@ -1,6 +1,6 @@
 // ************************
 // journal javascript     *
-// flurp.de - hello       *
+// flurp.de - hello jonas!*
 // ************************
 
 var Controls = Controls || {};
@@ -111,7 +111,7 @@ var Controls = Controls || {};
             }
         }).done(function(data) {
 
-            entry_element.find('.edit-controls').fadeToggle();
+            entry_element.find('.edit-controls').fadeOut();
             entry_element.find('.text').html(data.content);
 
         }).fail(function(jqXHR, status) {
