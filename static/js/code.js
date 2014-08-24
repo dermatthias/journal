@@ -6,7 +6,8 @@
 var Controls = Controls || {};
 (function(window, $, exports){
 
-    exports.currentNumOfEntries = 5;
+    exports.entriesOnAPage = 5;
+    exports.currentNumOfEntries = exports.entriesOnAPage;
 
     exports.init = function() {
 
@@ -58,7 +59,7 @@ var Controls = Controls || {};
                 type: 'GET',
                 dataType: 'html',
                 data: {
-                    limit: 5,
+                    limit: exports.entriesOnAPage,
                     offset: exports.currentNumOfEntries
                 }
             }).done(function(data){
@@ -67,7 +68,7 @@ var Controls = Controls || {};
                 $(that).show();
                 $('#more-loader').hide();
 
-                exports.currentNumOfEntries += 5;
+                exports.currentNumOfEntries += exports.entriesOnAPage;
 
             }).fail(function(jqXHR, status){
 
@@ -132,13 +133,16 @@ var Map = Map || {};
     exports.maps = {};
     exports.mapsMarker = {};
 
+    var leafletAttribution = 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>';
+    var leafletTileUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+
     exports.init = function() {
 
         if ($('#map').length != 0) {
             Map.map = L.map('map').setView([48.395, 9.98], 10);
 
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            L.tileLayer(leafletTileUrl, {
+                attribution: leafletAttribution,
                 maxZoom: 18
             }).addTo(Map.map);
 
@@ -192,8 +196,8 @@ var Map = Map || {};
 
                     var entryMap = L.map('entry-map-' + id).setView([lat, lng], 10);
                     Map.maps[id] = entryMap;
-                    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+                    L.tileLayer(leafletTileUrl, {
+                        attribution: leafletAttribution,
                         maxZoom: 18
                     }).addTo(entryMap);
 
@@ -257,8 +261,8 @@ var Map = Map || {};
             }
 
             var largeMap = L.map('large-map').setView(center, 10);
-            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            L.tileLayer(leafletTileUrl, {
+                attribution: leafletAttribution,
                 maxZoom: 18
             }).addTo(largeMap);
 

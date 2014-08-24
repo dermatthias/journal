@@ -13,10 +13,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    entries = Entry.query\
-        .order_by(Entry.date.desc())\
-        .limit(5).offset(0)\
-        .all()
+    entries = Entry.query.order_by(Entry.date.desc()).limit(5).offset(0).all()
 
     # render markdown for all entries in DB
     for entry in entries:
@@ -104,11 +101,6 @@ def delete():
     return json.dumps(response)
 
 
-@app.route('/add_location', methods=['POST'])
-def add_location():
-    #entry_id = request.form['entry_id']
-    return redirect(url_for('index'))
-
 
 @app.route('/all_locations', methods=['GET'])
 def all_locations():
@@ -124,7 +116,6 @@ def all_locations():
             json_locations.append(loc)
 
     return json.dumps(json_locations)
-
 
 
 class Entry(db.Model):
@@ -159,4 +150,4 @@ class Picture(db.Model):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
