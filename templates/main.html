@@ -74,13 +74,15 @@
         </div>
 
         <div class="center center-text">
-        {% if entries.length %}
+        {% if entries and entries|length > 5 %}
             <button id="more-button" class="button">Load more</button>
             <div class="hidden" id="more-loader">
                 <img class="more-loader" src="/static/img/loading-bars.svg">
             </div>
         {% else %}
-            No entries yet. It's about time to write something!
+            {% if not entries %}
+                No entries yet. It's about time to write something!
+            {% endif %}
         {% endif %}
         </div>
     </div>
