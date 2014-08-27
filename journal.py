@@ -19,7 +19,10 @@ def index():
     for entry in entries:
         entry.text_markdown = markdown2.markdown(entry.text)
 
+    total_entries = db.session.query(Entry.id).count()
+
     return render_template('main.html',
+                           total_entries=total_entries,
                            datetime=datetime.datetime,
                            entries=entries)
 

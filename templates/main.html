@@ -74,7 +74,7 @@
         </div>
 
         <div class="center center-text">
-        {% if entries and entries|length > 5 %}
+        {% if entries and total_entries > 5 %}
             <button id="more-button" class="button">Load more</button>
             <div class="hidden" id="more-loader">
                 <img class="more-loader" src="/static/img/loading-bars.svg">
